@@ -22,7 +22,7 @@ export default defineConfig({
     host: true,
     port: 3000,
     allowedHosts:[
-      'https://crud-x838.onrender.com'
+      'crud-x838.onrender.com'
     ]
   }
 })
