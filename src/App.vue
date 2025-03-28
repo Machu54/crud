@@ -11,7 +11,7 @@ const contenido = ref([]);
 
 async function mostrar() {
     try {
-        const response = await axios.get('http://localhost:3000/api/personajes');
+        const response = await axios.get('https://aplication-gpd4.onrender.com/api/personajes');
         console.log(response.data);
         contenido.value = response.data.filter(personaje => personaje.id !== 1);
     } catch (error) {
@@ -27,7 +27,7 @@ const contenido1 = ref([]);
 
 async function mostrarpar() {
     try {
-        const response = await axios.get('http://localhost:3000/api/participantes');
+        const response = await axios.get('https://aplication-gpd4.onrender.com/api/participantes');
         console.log(response.data);
         contenido1.value = response.data.filter(participante => participante.id !== 1);
     } catch (error) {
@@ -40,7 +40,7 @@ onMounted(mostrarpar);
 
 const Eliminado = async (id) => {
     try {
-        await axios.delete(`http://localhost:3000/api/personajes/${id}`);
+        await axios.delete(`https://aplication-gpd4.onrender.com/api/personajes/${id}`);
         await mostrar(); 
     } catch (error) {
         console.error('Error al eliminar el personaje:', error);
@@ -49,7 +49,7 @@ const Eliminado = async (id) => {
 
 const Eliminado1 = async (id) => {
     try {
-        await axios.delete(`http://localhost:3000/api/participantes/${id}`);
+        await axios.delete(`https://aplication-gpd4.onrender.com/api/participantes/${id}`);
         await mostrarpar(); 
     } catch (error) {
         console.error('Error al eliminar el participante:', error);
@@ -58,7 +58,7 @@ const Eliminado1 = async (id) => {
 
 const actualizar1 = async (personaje) => {
   try {
-    await axios.put(`http://localhost:3000/api/personajes/${personaje.id}`, personaje);
+    await axios.put(`https://aplication-gpd4.onrender.com/api/personajes/${personaje.id}`, personaje);
     await mostrar(); 
   } catch (error) {
     console.error("Error al actualizar personaje:", error);
@@ -67,7 +67,7 @@ const actualizar1 = async (personaje) => {
 
 const actualizar2 = async (participante) => {
   try {
-    await axios.put(`http://localhost:3000/api/participantes/${participante.id}`, participante);
+    await axios.put(`https://aplication-gpd4.onrender.com/api/participantes/${participante.id}`, participante);
     await mostrarpar(); 
   } catch (error) {
     console.error("Error al actualizar participante:", error);

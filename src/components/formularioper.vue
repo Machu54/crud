@@ -14,7 +14,7 @@ let json = ref({
 const boton = async () => {
     const options = {
         method: 'POST',
-        url: 'http://localhost:3000/api/participantesin',
+        url: 'http://https://aplication-gpd4.onrender.com/api/participantesin',
         headers: {
             'Content-Type': 'application/json'
         },

@@ -17,7 +17,7 @@ const emit = defineEmits(["actualizado"]);
 const boton = async () => {
   const options = {
     method: "POST",
-    url: "http://localhost:3000/api/personajesinsertar",
+    url: "http://https://aplication-gpd4.onrender.com/api/personajesinsertar",
     headers: {
       "Content-Type": "application/json"
     },

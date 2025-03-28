@@ -19,6 +19,7 @@ function abrirModal(fila) {
     mostrarModal.value = true;
 }
 
+
 function actualizarParticipante() {
     emit("actualizar", participanteActual.value);
     mostrarModal.value = false;
