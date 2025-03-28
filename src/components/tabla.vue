@@ -1,15 +1,27 @@
 <script setup>
-import axios from "axios";
+import { ref } from "vue";
 
 const props = defineProps({
     encabezados: Array, 
     contenido: Array 
 });
 
-const emit = defineEmits(['eliminado']);
+const emit = defineEmits(["eliminado", "actualizar"]);
+const mostrarModal = ref(false);
+const personajeActual = ref({});
 
 function eliminarPersonaje(id) {
-  emit("eliminado", id);
+    emit("eliminado", id);
+}
+
+function abrirModal(fila) {
+    personajeActual.value = { ...fila };
+    mostrarModal.value = true;
+}
+
+function actualizarPersonaje() {
+    emit("actualizar", personajeActual.value);
+    mostrarModal.value = false;
 }
 </script>
 
@@ -29,12 +41,26 @@ function eliminarPersonaje(id) {
           {{ valor }}
         </td>
         <td>
-          <button>Editar</button>
+          <button @click="abrirModal(fila)">Editar</button>
           <button @click="eliminarPersonaje(fila.id)">Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <div v-if="mostrarModal" class="modal">
+    <div class="modal-contenido">
+      <h2>Actualizar Personaje</h2>
+      <label v-for="(valor, clave) in personajeActual" :key="'input-' + clave">
+        {{ clave }}:
+        <input v-model="personajeActual[clave]" />
+      </label>
+      <div class="botones">
+        <button @click="actualizarPersonaje">Guardar</button>
+        <button @click="mostrarModal = false">Cancelar</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -43,7 +69,6 @@ function eliminarPersonaje(id) {
   width: 100%;
   border-collapse: collapse;
 }
-
 th, td {
   border: 2px solid black;
   text-align: center;
@@ -54,5 +79,27 @@ button {
   margin-right: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-contenido {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+.botones {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

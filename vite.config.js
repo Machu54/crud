@@ -15,4 +15,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server:{
+    port:5273
+  },
+  preview:{
+    host: true,
+    port: 3000,
+    allowedHosts:[
+       'https://crud-v1av.onrender.com'
+    ]
+  }
 })

@@ -55,11 +55,31 @@ const Eliminado1 = async (id) => {
         console.error('Error al eliminar el participante:', error);
     }
 };
+
+const actualizar1 = async (personaje) => {
+  try {
+    await axios.put(`http://localhost:3000/api/personajes/${personaje.id}`, personaje);
+    await mostrar(); 
+  } catch (error) {
+    console.error("Error al actualizar personaje:", error);
+  }
+};
+
+const actualizar2 = async (participante) => {
+  try {
+    await axios.put(`http://localhost:3000/api/participantes/${participante.id}`, participante);
+    await mostrarpar(); 
+  } catch (error) {
+    console.error("Error al actualizar participante:", error);
+  }
+};
+
 </script>
 
 <template>
     <Formulario @actualizado="mostrar" />
-    <Tabla :encabezados="encabezados" :contenido="contenido" @eliminado="Eliminado" />
+    <Tabla :encabezados="encabezados" :contenido="contenido" @actualizar="actualizar1" @eliminado="Eliminado" />
     <formularioper />
-    <Tabla2 :encabezados1="encabezados1" :contenido1="contenido1" @eliminado1="Eliminado1" /> 
+    <Tabla2 :encabezados1="encabezados1" :contenido1="contenido1" @actualizar="actualizar2" @eliminado1="Eliminado1" />
+
 </template>
